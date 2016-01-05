@@ -9,7 +9,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import org.apache.commons.lang3.StringUtils;
-//import javax.persistence.Cacheable;
 
 /**
  *
@@ -24,7 +23,6 @@ public class CountryDao extends AbstractDao {
         return CountryAssembler.convertToDto(result);
     }
 
-//    @Cacheable("countriesCache")
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 

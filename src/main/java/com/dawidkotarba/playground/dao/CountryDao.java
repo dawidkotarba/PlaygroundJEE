@@ -28,7 +28,7 @@ public class CountryDao extends AbstractDao {
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
-        List<Country> result = entityManager.createQuery("SELECT c FROM Country c where c.name LIKE :name").setParameter("name", name).getResultList();
+        List<Country> result = entityManager.createQuery("SELECT c FROM Country c where c.name LIKE :name").setParameter("name","%" + name + "%").getResultList();
         return CountryAssembler.convertToDto(result);
     }
 

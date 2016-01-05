@@ -31,7 +31,7 @@ public class UserDao extends AbstractDao {
 
     public List<UserOutDto> getByName(String username) {
         Preconditions.checkArgument(StringUtils.isNotBlank(username), "Username cannot be blank");
-        List<Country> result = entityManager.createQuery("SELECT u FROM User u  where u.username LIKE :username").setParameter("username", username).getResultList();
+        List<Country> result = entityManager.createQuery("SELECT u FROM User u  where u.username LIKE :username").setParameter("username", "%" + username + "%").getResultList();
         return copyProperties(result, UserOutDto.class);
     }
 

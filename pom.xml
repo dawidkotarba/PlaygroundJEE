@@ -156,7 +156,7 @@
                             <reportOutputDirectory>src/main/webapp</reportOutputDirectory>
                             <useStandardDocletOptions>false</useStandardDocletOptions>
                             <additionalparam>-apiVersion 1 -docBasePath /PlaygroundJEE/apidocs
-                                -apiBasePath /PlaygroundJEE/
+                                -apiBasePath /PlaygroundJEE/rest
                                 -swaggerUiPath ${project.build.directory}/
                             </additionalparam>
                         </configuration>

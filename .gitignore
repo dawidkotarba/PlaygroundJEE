@@ -3,3 +3,4 @@
 /target
 /lib
 /nb-configuration.xml
+/src/main/webapp/WEB-INF/glassfish-web.xml

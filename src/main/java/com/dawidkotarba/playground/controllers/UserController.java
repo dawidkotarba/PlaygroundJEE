@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes(MediaType.APPLICATION_JSON)
     public void add(@Valid UserInDto userInDto) {
         userService.add(userInDto);
     }

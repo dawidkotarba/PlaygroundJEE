@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.aop.ExecutionTimeLogger;
 import com.dawidkotarba.playground.integration.assembler.CountryAssembler;
 import com.dawidkotarba.playground.integration.dto.CountryDto;
 import com.dawidkotarba.playground.model.entities.Country;
@@ -18,11 +19,13 @@ import org.apache.commons.lang3.StringUtils;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class CountryDao extends AbstractDao {
     
+   @ExecutionTimeLogger
    public List<CountryDto> getAll() {
         List<Country> result = entityManager.createQuery("SELECT c FROM Country c").getResultList();
         return CountryAssembler.convertToDto(result);
     }
 
+   @ExecutionTimeLogger
     public List<CountryDto> getByName(String name) {
         Preconditions.checkArgument(StringUtils.isNotBlank(name), "Name cannot be blank");
 
@@ -30,6 +33,7 @@ public class CountryDao extends AbstractDao {
         return CountryAssembler.convertToDto(result);
     }
 
+    @ExecutionTimeLogger
     public void add(CountryDto countryDto) {
         Preconditions.checkNotNull(countryDto, "countryDto cannot be null");
         entityManager.persist(CountryAssembler.convert(countryDto));

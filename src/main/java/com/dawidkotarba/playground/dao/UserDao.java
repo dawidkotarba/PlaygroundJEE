@@ -1,5 +1,6 @@
 package com.dawidkotarba.playground.dao;
 
+import com.dawidkotarba.playground.aop.ExecutionTimeLogger;
 import com.dawidkotarba.playground.exceptions.InternalErrorException;
 import com.dawidkotarba.playground.integration.dto.UserInDto;
 import com.dawidkotarba.playground.integration.dto.UserOutDto;
@@ -24,17 +25,20 @@ import org.apache.commons.beanutils.BeanUtils;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UserDao extends AbstractDao {
 
+    @ExecutionTimeLogger
     public List<UserOutDto> getAll() {
                 List<User> users = entityManager.createQuery("SELECT u FROM User u").getResultList();
         return copyProperties(users, UserOutDto.class);
     }
 
+    @ExecutionTimeLogger
     public List<UserOutDto> getByName(String username) {
         Preconditions.checkArgument(StringUtils.isNotBlank(username), "Username cannot be blank");
         List<Country> result = entityManager.createQuery("SELECT u FROM User u  where u.username LIKE :username").setParameter("username", "%" + username + "%").getResultList();
         return copyProperties(result, UserOutDto.class);
     }
 
+    @ExecutionTimeLogger
     public void add(UserInDto userInDto) {
         try {
             Preconditions.checkNotNull(userInDto, "userInDto cannot be null");

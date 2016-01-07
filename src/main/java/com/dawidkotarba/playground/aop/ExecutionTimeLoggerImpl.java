@@ -22,7 +22,7 @@ public class ExecutionTimeLoggerImpl implements Serializable {
         long startTime = System.currentTimeMillis();
         Object proceedVal = context.proceed();
         long endTime = System.currentTimeMillis();
-        LOGGER.info("Execution time: {} ms for {}", endTime - startTime, context.getContextData());
+        LOGGER.info("Execution time: {} ms for {}", endTime - startTime, context.getMethod());
         return proceedVal;
     }
 }
